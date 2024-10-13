@@ -1,0 +1,46 @@
+name: UI tests
+
+on: [ push, pull_request ]
+
+permissions:
+    contents: read   #   to fetch code (actions/checkout)
+
+concurrency:
+    group: ${{ github.event_name }}-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+env:
+    TEST_CAMPAIGN: 'sanity:fast-fail'
+
+jobs:
+    sanity:
+        permissions:
+            contents: read   #   to fetch code (actions/checkout)
+        runs-on: ubuntu-latest
+        name: Sanity
+        strategy:
+            matrix:
+                php: [ '7.1','7.2', '7.3', '7.4' ]
+            fail-fast: false
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup Environment
+              timeout-minutes: 15
+              uses: ./.github/actions/setup-env
+              with:
+                  PHP_VERSION: ${{ matrix.php }}
+                  INSTALL_AUTO: 'false'
+
+            - name: Run Tests
+              uses: ./.github/actions/ui-test
+              with:
+                  TEST_CAMPAIGN: ${{ env.TEST_CAMPAIGN }}
+
+            - name: Upload Screenshots and logs
+              uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                  name: sanity-${{ matrix.php }}
+                  path: ./tests/UI/screenshots/
