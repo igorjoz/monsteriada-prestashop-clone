@@ -1,7 +1,7 @@
 services:
-  BE_191711_prestashop:
+  prestashop:
     container_name: prestashop
-    image: patrykso/be-presta:latest
+    image: patrykso/be-presta:main
     restart: unless-stopped
     deploy:
       restart_policy:
@@ -16,21 +16,17 @@ services:
     ports:
       - "19171:443"
     environment:
-      DB_SERVER: db
+      DB_SERVER: admin-mysql_default
       DB_NAME: BE_191711
-      DB_USER: student
-      DB_PASSWD: root
+      DB_USER: root
+      DB_PASSWD: student
       PS_INSTALL_AUTO: 1
       PS_DEV_MODE: 1
     networks:
       - BE_191711_network
       - admin-mysql_default
-    # command: >
-    #   /bin/bash -c "
-    #   mysql -u -p -h db_name < /db_dump/db.sql
-    #   "
 
-  BE_191711_memcached:
+  memcached:
     container_name: presta_cache
     deploy:
       restart_policy:
