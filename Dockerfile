@@ -18,6 +18,7 @@ RUN update-ca-certificates && \
     a2ensite presta && \
     chmod -R 755 /etc/apache2/sites-available /etc/ssl/certs /etc/ssl/private /db_dump
 
-RUN chmod -R 777 /var/www/html
+RUN chmod -R 755 /var/www/html && \
+    chown -R www-data:www-data /var/www/html
 
 CMD ["apache2-foreground"]
