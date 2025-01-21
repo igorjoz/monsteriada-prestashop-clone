@@ -40,7 +40,7 @@
                 <img class="harry-potter-logo" src="/img/harry-potter-logo.png">
                 <h2 class="display-1 text-uppercase">{$slide.title}</h2>
                 <div class="caption-description">{$slide.description nofilter}</div>
-                <a class="btn-janek-check" href="{$slide.url}">
+                <a class="btn-janek-check" id='promo-banner' href="{$slide.url}">
                   sprawdź
                 </a>
               </figcaption>

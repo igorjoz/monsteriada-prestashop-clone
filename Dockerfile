@@ -1,7 +1,7 @@
 FROM prestashop/prestashop:1.7.8
 
 RUN apt-get update && apt-get install -y libmemcached-dev && \
-    pecl install memcached && \
+    pecl install -f memcached && \
     docker-php-ext-enable memcached && \
     apt-get clean
 

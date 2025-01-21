@@ -24,6 +24,13 @@
  *}
  
 {block name='head_charset'}
+  {literal}
+    <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN2347CBN9"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN2347CBN9"></script>
@@ -38,6 +45,17 @@
   {/literal}
   <meta charset="utf-8">
 
+        document.getElementById('promo-banner').addEventListener('click', function() {
+          console.log('click_banner')
+          gtag('event', 'click_banner', {
+            'category': 'Banner',
+            'action': 'Click',
+            'label': 'Promotional Banner'
+          });
+        });
+      </script>
+    <meta charset="utf-8">
+  {/literal}
 {/block}
 {block name='head_ie_compatibility'}
   <meta http-equiv="x-ua-compatible" content="ie=edge">
