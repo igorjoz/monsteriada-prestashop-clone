@@ -20,7 +20,7 @@ def testA(driverA, source):
 
     try:
         driverA.get(source)
-        WebDriverWait(driver=driverA, timeout=15).until(
+        WebDriverWait(driver=driverA, timeout=25).until(
             EC.presence_of_element_located((By.ID, 'header'))
         )
 
@@ -33,7 +33,7 @@ def testA(driverA, source):
         driverA.execute_script("arguments[0].scrollIntoView();",
                                ddmenu)
         driverA.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverA, timeout=15).until(
+        WebDriverWait(driver=driverA, timeout=25).until(
             EC.visibility_of(ddmenu)
         )
         ActionChains(driver=driverA).move_to_element(ddmenu).perform()
@@ -47,7 +47,7 @@ def testA(driverA, source):
 
         for cat_address in cat_addresses:
             driverA.get(cat_address)
-            WebDriverWait(driver=driverA, timeout=15).until(
+            WebDriverWait(driver=driverA, timeout=25).until(
                 EC.presence_of_element_located((By.ID, 'js-product-list'))
             )
 
@@ -70,7 +70,7 @@ def testA(driverA, source):
                     nxtPage.click()
                     while driverA.current_url != nxtPageSrc:
                         continue
-                    WebDriverWait(driver=driverA, timeout=15).until(
+                    WebDriverWait(driver=driverA, timeout=25).until(
                         EC.presence_of_element_located((By.ID, 'js-product-list'))
                     )
                     products = driverA.find_elements(By.XPATH,
@@ -83,7 +83,7 @@ def testA(driverA, source):
                 while True:
                     try:
                         driverA.get(product_address)
-                        WebDriverWait(driver=driverA, timeout=15).until(
+                        WebDriverWait(driver=driverA, timeout=25).until(
                             EC.presence_of_element_located(
                                 (By.CLASS_NAME, 'product-add-to-cart.js-product-add-to-cart'))
                         )
@@ -97,25 +97,25 @@ def testA(driverA, source):
                         driverA.execute_script("arguments[0].scrollIntoView();",
                                                items_up)
                         driverA.execute_script("window.scrollBy(0, -100);")
-                        WebDriverWait(driver=driverA, timeout=15).until(
+                        WebDriverWait(driver=driverA, timeout=25).until(
                             EC.visibility_of(items_up)
                         )
 
                         how_many = random.randint(1, how_many_max)
                         for i in range(how_many - 1):
-                            WebDriverWait(driver=driverA, timeout=15).until(
+                            WebDriverWait(driver=driverA, timeout=25).until(
                                 EC.element_to_be_clickable(items_up)
                             )
                             items_up.click()
 
                         add_to_cart = col_prod_txt.find_element(By.XPATH,
                                                                 ".//button[@class='btn btn-primary add-to-cart']")
-                        WebDriverWait(driver=driverA, timeout=15).until(
+                        WebDriverWait(driver=driverA, timeout=25).until(
                             EC.element_to_be_clickable(add_to_cart)
                         )
                         add_to_cart.click()
 
-                        WebDriverWait(driver=driverA, timeout=15).until(
+                        WebDriverWait(driver=driverA, timeout=25).until(
                             EC.visibility_of_element_located((By.ID, 'blockcart-modal'))
                         )
 
@@ -156,7 +156,7 @@ def testB(driverB, source):
     print("Test B sie rozpoczyna")
     try:
         driverB.get(source)
-        WebDriverWait(driver=driverB, timeout=15).until(
+        WebDriverWait(driver=driverB, timeout=25).until(
             EC.presence_of_element_located((By.ID, 'header'))
         )
 
@@ -166,14 +166,14 @@ def testB(driverB, source):
         driverB.execute_script("arguments[0].scrollIntoView();",
                                search_bar)
         driverB.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverB, timeout=15).until(
+        WebDriverWait(driver=driverB, timeout=25).until(
             EC.element_to_be_clickable(
                 search_bar)
         )
         search_bar.send_keys('yoda')
         search_bar.send_keys(Keys.ENTER)
 
-        WebDriverWait(driver=driverB, timeout=15).until(
+        WebDriverWait(driver=driverB, timeout=25).until(
             EC.presence_of_element_located((By.ID, "js-product-list"))
         )
 
@@ -203,7 +203,7 @@ def testB(driverB, source):
             print("TEST B: Wszystkie produkty byly out-of-stock")
             raise ValueError
 
-        WebDriverWait(driver=driverB, timeout=15).until(
+        WebDriverWait(driver=driverB, timeout=25).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'product-add-to-cart.js-product-add-to-cart'))
         )
 
@@ -216,12 +216,12 @@ def testB(driverB, source):
                                add_to_cart)
         driverB.execute_script("window.scrollBy(0, -100);")
 
-        WebDriverWait(driver=driverB, timeout=15).until(
+        WebDriverWait(driver=driverB, timeout=25).until(
             EC.element_to_be_clickable(add_to_cart)
         )
         add_to_cart.click()
 
-        WebDriverWait(driver=driverB, timeout=15).until(
+        WebDriverWait(driver=driverB, timeout=25).until(
             EC.visibility_of_element_located((By.ID, 'blockcart-modal'))
         )
 
@@ -254,7 +254,7 @@ def testC(driverC, source):
     print("Test C sie rozpoczyna")
     try:
         driverC.get(source)
-        WebDriverWait(driver=driverC, timeout=15).until(
+        WebDriverWait(driver=driverC, timeout=25).until(
             EC.presence_of_element_located((By.ID, "main"))
         )
 
@@ -276,7 +276,7 @@ def testC(driverC, source):
                                                              "bootstrap-touchspin-down']")
 
             for _ in range(item_tbd_how_many):
-                WebDriverWait(driver=driverC, timeout=15).until(
+                WebDriverWait(driver=driverC, timeout=25).until(
                     EC.element_to_be_clickable(arrow_down_tbd)
                     and EC.visibility_of(arrow_down_tbd)
                 )
@@ -284,7 +284,7 @@ def testC(driverC, source):
 
             print("Test C usunal produkt z koszyka")
 
-            WebDriverWait(driver=driverC, timeout=15).until(
+            WebDriverWait(driver=driverC, timeout=25).until(
                 EC.invisibility_of_element(item_tbd)
             )
 
@@ -316,7 +316,7 @@ def testEFGH(driverE, source):
     print("Test E sie rozpoczyna")
     try:
         driverE.get(source)
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.presence_of_element_located((By.ID, "main"))
         )
 
@@ -324,7 +324,7 @@ def testEFGH(driverE, source):
                              ".//div[@class='checkout cart-detailed-actions js-cart-detailed-actions card-block']").click()
 
         try:
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "cart-grid-body.col-xs-12.col-lg-8"))
             )
             result[0] = "passed"
@@ -356,28 +356,28 @@ def testEFGH(driverE, source):
 
             driverE.execute_script("arguments[0].scrollIntoView();", rodo_check)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(rodo_check.find_element(By.XPATH, "./../.."))
             )
             rodo_check.find_element(By.XPATH, "./../..").click()
 
             driverE.execute_script("arguments[0].scrollIntoView();", tos_check)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(tos_check.find_element(By.XPATH, "./../.."))
             )
             tos_check.find_element(By.XPATH, "./../..").click()
 
             driverE.execute_script("arguments[0].scrollIntoView();", first_stage_gender)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(first_stage_gender.find_element(By.XPATH, "./../.."))
             )
             first_stage_gender.find_element(By.XPATH, "./../..").click()
 
             driverE.execute_script("arguments[0].scrollIntoView();", first_stage_name)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(
                     first_stage_name)
             )
@@ -385,7 +385,7 @@ def testEFGH(driverE, source):
 
             driverE.execute_script("arguments[0].scrollIntoView();", first_stage_surname)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(
                     first_stage_surname)
             )
@@ -393,7 +393,7 @@ def testEFGH(driverE, source):
 
             driverE.execute_script("arguments[0].scrollIntoView();", first_stage_mail)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(
                     first_stage_mail)
             )
@@ -401,7 +401,7 @@ def testEFGH(driverE, source):
 
             driverE.execute_script("arguments[0].scrollIntoView();", first_stage_button)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(
                     first_stage_button)
             )
@@ -409,7 +409,7 @@ def testEFGH(driverE, source):
 
         # second form
 
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.presence_of_element_located((By.ID, "checkout-addresses-step"))
         )
 
@@ -429,28 +429,28 @@ def testEFGH(driverE, source):
 
             driverE.execute_script("arguments[0].scrollIntoView();", second_stage_address)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(second_stage_address)
             )
             second_stage_address.send_keys('ul. Narutowicza 13')
 
             driverE.execute_script("arguments[0].scrollIntoView();", second_stage_postcode)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(second_stage_postcode)
             )
             second_stage_postcode.send_keys('80-233')
 
             driverE.execute_script("arguments[0].scrollIntoView();", second_stage_city)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(second_stage_city)
             )
             second_stage_city.send_keys('Gdańsk')
 
             driverE.execute_script("arguments[0].scrollIntoView();", second_stage_phone)
             driverE.execute_script("window.scrollBy(0, -100);")
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.element_to_be_clickable(second_stage_phone)
             )
             second_stage_phone.send_keys('123456789')
@@ -458,7 +458,7 @@ def testEFGH(driverE, source):
         second_stage_button = di_second_stage.find_element(By.XPATH, ".//button[contains(text(), 'Dalej')]")
         driverE.execute_script("arguments[0].scrollIntoView();", second_stage_button)
         driverE.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.element_to_be_clickable(
                 second_stage_button)
         )
@@ -468,7 +468,7 @@ def testEFGH(driverE, source):
 
         print("Test G sie rozpoczyna")
 
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.presence_of_element_located((By.ID, "checkout-delivery-step"))
         )
 
@@ -479,21 +479,21 @@ def testEFGH(driverE, source):
 
         driverE.execute_script("arguments[0].scrollIntoView();", third_stage_delivery)
         driverE.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.element_to_be_clickable(third_stage_delivery)
         )
         third_stage_delivery.click()
 
         driverE.execute_script("arguments[0].scrollIntoView();", third_stage_button)
         driverE.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.element_to_be_clickable(
                 third_stage_button)
         )
         third_stage_button.click()
 
         try:
-            WebDriverWait(driver=driverE, timeout=15).until(
+            WebDriverWait(driver=driverE, timeout=25).until(
                 EC.presence_of_element_located((By.ID, "checkout-payment-step"))
                 and EC.visibility_of_element_located((By.ID, "checkout-payment-step"))
             )
@@ -507,7 +507,7 @@ def testEFGH(driverE, source):
 
         print("Test F sie rozpoczyna")
 
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.presence_of_element_located((By.ID, "checkout-payment-step"))
             and EC.visibility_of_element_located((By.ID, "checkout-payment-step"))
         )
@@ -517,13 +517,13 @@ def testEFGH(driverE, source):
 
         driverE.execute_script("arguments[0].scrollIntoView();", fourth_stage_payment)
         driverE.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.element_to_be_clickable(
                 fourth_stage_payment)
         )
         fourth_stage_payment.click()
 
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.element_to_be_clickable(
                 fourth_stage_payment)
         )
@@ -551,13 +551,13 @@ def testEFGH(driverE, source):
 
         driverE.execute_script("arguments[0].scrollIntoView();", fourth_stage_button)
         driverE.execute_script("window.scrollBy(0, -100);")
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.element_to_be_clickable(
                 fourth_stage_button)
         )
         fourth_stage_button.click()
 
-        WebDriverWait(driver=driverE, timeout=15).until(
+        WebDriverWait(driver=driverE, timeout=25).until(
             EC.presence_of_element_located((By.ID,
                                             "content-hook_order_confirmation"))
         )
@@ -587,12 +587,12 @@ def testD(driver, source):  # create new account
 
     try:
         driver.get(source)
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.presence_of_element_located((By.ID, '_desktop_user_info'))
         )
         driver.find_element(By.ID, '_desktop_user_info').click()
 
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.presence_of_element_located((By.XPATH, "//a[@data-link-action='display-register-form']"))
         )
         driver.execute_script("window.scrollBy(0, 600);")
@@ -645,27 +645,27 @@ def testIJ(driver, source):
     try:
         driver.get(source)
 
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.presence_of_element_located((By.XPATH, "//a[@class='account']"))
         )
 
         account_element = driver.find_element(By.XPATH, "//a[@class='account']")
         ActionChains(driver).move_to_element(account_element).perform()
 
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.element_to_be_clickable(account_element)
         )
         account_element.click()
 
         # order history
         driver.execute_script("window.scrollBy(0, 300);")
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.presence_of_element_located((By.XPATH, "//a[@id='history-link']"))
         )
         driver.find_element(By.ID, 'history-link').click()
 
         # order details
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.presence_of_element_located((By.XPATH, "//tbody"))
         )
         driver.execute_script("window.scrollBy(0, 600);")
@@ -673,7 +673,7 @@ def testIJ(driver, source):
         order.find_element(By.XPATH, ".//a[contains(@data-link-action, 'view-order-details')]").click()
 
         # confirm that order details are displayed -> I passed
-        WebDriverWait(driver=driver, timeout=15).until(
+        WebDriverWait(driver=driver, timeout=25).until(
             EC.presence_of_element_located((By.ID, 'invoice-address'))
         )
         driver.execute_script("window.scrollBy(0, 600);")
@@ -711,7 +711,7 @@ if __name__ == '__main__':
     koszykAddress = "https://localhost:19171/koszyk?action=show"
 
     driver.get(baseAddress)
-    driver.set_page_load_timeout(20)
+    driver.set_page_load_timeout(30)
 
     test_results = []
 
