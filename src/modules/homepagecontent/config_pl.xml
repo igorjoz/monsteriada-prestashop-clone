@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>homepagecontent</name>
+    <displayName><![CDATA[Homepage main content]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[Main content for homepage - custom HTML &amp; CSS.]]></description>
+    <author><![CDATA[Your Name]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

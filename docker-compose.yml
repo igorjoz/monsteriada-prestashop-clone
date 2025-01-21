@@ -1,0 +1,48 @@
+services:
+  prestashop:
+    container_name: prestashop
+    image: patrykso/be-presta:main
+    restart: unless-stopped
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    ports:
+      - "19171:443"
+    environment:
+      DB_SERVER: admin-mysql_default
+      DB_NAME: BE_191711
+      DB_USER: root
+      DB_PASSWD: student
+      PS_INSTALL_AUTO: 1
+      PS_DEV_MODE: 1
+    networks:
+      - BE_191711_network
+      - admin-mysql_default
+
+  memcached:
+    container_name: presta_cache
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    image: memcached:alpine3.21
+    networks:
+      - BE_191711_network
+
+networks:
+  BE_191711_network:
+  admin-mysql_default:
+    external: true

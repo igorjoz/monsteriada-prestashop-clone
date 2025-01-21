@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <name>HomepageContent</name>
+    <displayName>Homepage main content</displayName>
+    <description>This is a custom module.</description>
+    <author>Igor Józefowicz</author>
+    <version>1.0.0</version>
+    <tab>front_office_features</tab>
+</module>

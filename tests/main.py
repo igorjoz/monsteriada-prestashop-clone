@@ -722,7 +722,7 @@ if __name__ == '__main__':
     test_results.append(["A", testA(driver, baseAddress)])
     test_results.append(["B", testB(driver, baseAddress)])
     test_results.append(["C", testC(driver, koszykAddress)])
-    '''test_results.append(["D", testD(driver, baseAddress)])
+    test_results.append(["D", testD(driver, baseAddress)])
     results_efgh = testEFGH(driver, koszykAddress)
     test_results.append(["E", results_efgh[0]])
     test_results.append(["F", results_efgh[1]])
@@ -731,7 +731,6 @@ if __name__ == '__main__':
     results_ij = testIJ(driver, baseAddress)
     test_results.append(["I", results_ij[0]])
     test_results.append(["J", results_ij[1]])
-    '''
 
     time_after = time.perf_counter()
     time_of_testing = time_after - time_before

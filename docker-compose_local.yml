@@ -1,0 +1,52 @@
+services:
+  prestashop:
+    container_name: prestashop
+    image: prestashop/prestashop:1.7.8
+    # image: patrykso/be-presta:latest
+    restart: unless-stopped
+    depends_on:
+      - admin-mysql_db
+    ports:
+      - "19171:443"
+    environment:
+      DB_SERVER: admin-mysql_db
+      DB_NAME: BE_191711
+      DB_USER: root
+      DB_PASSWD: student
+      PS_INSTALL_AUTO: 1
+      PS_DEV_MODE: 1
+    # volumes:
+      # - ./src:/var/www/html
+      # - ./data/cert.pem:/etc/ssl/certs/cert.pem
+      # - ./data/key.pem:/etc/ssl/private/key.pem
+      # - ./data/presta.conf:/etc/apache2/sites-available/presta.conf
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  memcached:
+    container_name: presta_cache
+    image: memcached:alpine3.21
+
+  admin-mysql_db:
+    container_name: admin-mysql_db
+    # image: mariadb:10.3
+    image: mysql:5
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: student
+      MYSQL_DATABASE: BE_191711
+    # volumes:
+    #   - ./data/:/docker-entrypoint-initdb.d/
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - admin-mysql_db
+    ports: 
+      - 81:80 
+    environment:
+      - PMA_HOST=admin-mysql_db
+      - PMA_USER=root
+      - PMA_PASSWORD=student
