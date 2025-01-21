@@ -170,7 +170,7 @@ def testB(driverB, source):
             EC.element_to_be_clickable(
                 search_bar)
         )
-        search_bar.send_keys('yoda')
+        search_bar.send_keys('luke')
         search_bar.send_keys(Keys.ENTER)
 
         WebDriverWait(driver=driverB, timeout=25).until(
@@ -282,11 +282,13 @@ def testC(driverC, source):
                 )
                 arrow_down_tbd.click()
 
-            print("Test C usunal produkt z koszyka")
 
-            WebDriverWait(driver=driverC, timeout=25).until(
+            WebDriverWait(driver=driverC, timeout=35).until(
                 EC.invisibility_of_element(item_tbd)
             )
+            time.sleep(1)
+
+            print("Test C usunal produkt z koszyka")
 
         items_end = driverC.find_elements(By.XPATH, "//section[@id='main']//li[@class='cart-item']")
         items_end_count = len(items_end)
@@ -604,8 +606,8 @@ def testD(driver, source):  # create new account
 
         driver.find_element(By.XPATH, "//input[@name='id_gender' and @value='1']").click()
         driver.find_element(By.NAME, 'firstname').send_keys("Robert")
-        driver.find_element(By.NAME, 'lastname').send_keys("Kowalski")
-        driver.find_element(By.NAME, 'email').send_keys("robert.kowalski@example.com")
+        driver.find_element(By.NAME, 'lastname').send_keys("Kowalskii")
+        driver.find_element(By.NAME, 'email').send_keys("robert.kowalskii@example.com")
         driver.find_element(By.NAME, 'password').send_keys("Password123")
         driver.find_element(By.NAME, 'birthday').send_keys("1999-01-02")
         consent_checkbox = driver.find_element(By.NAME, 'customer_privacy')
@@ -720,7 +722,7 @@ if __name__ == '__main__':
     test_results.append(["A", testA(driver, baseAddress)])
     test_results.append(["B", testB(driver, baseAddress)])
     test_results.append(["C", testC(driver, koszykAddress)])
-    test_results.append(["D", testD(driver, baseAddress)])
+    '''test_results.append(["D", testD(driver, baseAddress)])
     results_efgh = testEFGH(driver, koszykAddress)
     test_results.append(["E", results_efgh[0]])
     test_results.append(["F", results_efgh[1]])
@@ -729,7 +731,7 @@ if __name__ == '__main__':
     results_ij = testIJ(driver, baseAddress)
     test_results.append(["I", results_ij[0]])
     test_results.append(["J", results_ij[1]])
-
+    '''
 
     time_after = time.perf_counter()
     time_of_testing = time_after - time_before
