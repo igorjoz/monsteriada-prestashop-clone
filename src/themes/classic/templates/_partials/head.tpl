@@ -26,14 +26,16 @@
 {block name='head_charset'}
 
   <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN2347CBN9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN2347CBN9"></script>
+  {literal}
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'G-ZN2347CBN9');
-    </script>
+    gtag('config', 'G-ZN2347CBN9');
+  </script>
+  {/literal}
   <meta charset="utf-8">
 
 {/block}

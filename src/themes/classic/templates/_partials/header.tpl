@@ -117,7 +117,7 @@
   </div>
   
   <div class="main-navigation-janek">
-    <a class="button-item" id="start-page-btn" href="https://localhost/">Start</a>
+    <a class="button-item" id="start-page-btn" href="/">Start</a>
     <a class="button-item category-items-button">
       Gadżety wg kategorii
       <i class="icon-arrow-down"></i>
@@ -129,11 +129,11 @@
     <a class="button-item" href="/96-bestsellery">Bestsellery</a>
     <a class="button-item" href="/95-promocje">Promocje</a>
     <a class="button-item" href="/94-nowosci">Nowości</a>
-    <a class="button-item" href="https://localhost/content/14-bylem-tu">Blog</a>
+    <a class="button-item" href="/content/14-bylem-tu">Blog</a>
   </div>
   <script>
     window.onload = function() {
-      if (window.location.href === 'http://localhost/') {
+      if (window.location.href === '/') {
         const button = document.getElementById('start-page-btn');
         if (button) {
           button.style.setProperty('color', '#cce963', 'important');
